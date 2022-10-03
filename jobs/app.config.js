@@ -1,4 +1,4 @@
-{
+export default {
   "expo": {
     "name": "jobs",
     "slug": "jobs",
