@@ -1,0 +1,6 @@
+POST https://us-central1-react-native-course-2797e.cloudfunctions.net/requestOTP
+Content-Type: application/json
+
+{
+  "phone": "+34639075911"
+}

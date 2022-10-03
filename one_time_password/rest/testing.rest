@@ -1,0 +1,12 @@
+# firebase functions
+# returns the body
+# exports.echo = functions.https.onRequest((req, res) => {
+#   res.send(req.body);
+# });
+
+POST https://us-central1-react-native-course-2797e.cloudfunctions.net/createUser
+Content-Type: application/json
+
+{
+  "key": "value"
+}
