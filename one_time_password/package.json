@@ -9,8 +9,14 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@rneui/base": "^4.0.0-rc.6",
+    "@rneui/themed": "^4.0.0-rc.6",
+    "axios": "^0.27.2",
+    "dotenv": "^16.0.3",
     "expo": "~46.0.13",
+    "expo-constants": "^13.2.4",
     "expo-status-bar": "~1.4.0",
+    "firebase": "^9.10.0",
     "react": "18.0.0",
     "react-native": "0.69.6"
   },
