@@ -12,7 +12,7 @@ module.exports = (req, res) => {
 
   // in this case, the parameter is the uid (the phone in this case)
   admin.auth().getUser(phone)
-    .then((user) => {
+    .then(() => {
       // generate the code
       const code = Math.floor(Math.random() * 8999 + 1000);
 
@@ -33,5 +33,5 @@ module.exports = (req, res) => {
           }));
       });
     })
-    .catch((err) => res.status(422).send({ error: err, 'msg': 'Logging error', phone }));
+    .catch((err) => res.status(422).send({ error: err, msg: 'Error when logging.', phone }));
 }
