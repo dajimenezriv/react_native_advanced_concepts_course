@@ -243,3 +243,12 @@ module.exports = (req, res) => {
     .catch((err) => res.status(422).send({ error: err, msg: 'Error when logging.', phone }));
 }
 ```
+
+## Pending
+
+### Section 9: Bringing it All Together
+
+Learning @react-navigation.
+Creating an slide welcome screen.
+
+### Section 10: Facebook Authentication

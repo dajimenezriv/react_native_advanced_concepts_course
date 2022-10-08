@@ -1,10 +1,19 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
+import Slides from '../components/Slides';
 
-export default function WelcomeScreen() {
+const SLIDE_DATA = [
+  { text: 'Welcome to JobApp', color: '#03A9F4' },
+  { text: 'Use this app to get a job anywhere', color: '#009688' },
+  { text: 'Set your location, then swipe away', color: '#03A9F4' },
+];
+
+export default function WelcomeScreen({ navigation }) {
+  const onSlidesComplete = () => {
+    navigation.navigate('Auth');
+  };
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>WelcomeScreen</Text>
-    </View>
+    <Slides data={SLIDE_DATA} onComplete={onSlidesComplete} />
   )
 }
 
