@@ -1,4 +1,4 @@
-# react_native_advanced_concepts_course
+# React Native Advanced Concepts Course
 
 [Udemy Course](https://www.udemy.com/course/react-native-advanced/)
  
@@ -248,7 +248,30 @@ module.exports = (req, res) => {
 
 ### Section 9: Bringing it All Together
 
-Learning @react-navigation.
+Learning @react-navigation.<br>
 Creating an slide welcome screen.
 
 ### Section 10: Facebook Authentication
+
+I've decided to usee Google Authentication since I don't have a facebook account.<br>
+First, we need to create a project in google cloud.<br>
+Second. create an account of expo.<br>
+
+app.config.js
+```javascript
+export default {
+  "expo": {
+    ...
+    "slug": "react-native-advanced-concepts",
+    "owner": "dajimenezriv",
+    "scheme": "myscheme",
+    ...
+  }
+}
+```
+
+Login into expo and start the app.
+```bash
+expo login
+npx expo start
+```

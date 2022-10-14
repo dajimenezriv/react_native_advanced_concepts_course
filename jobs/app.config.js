@@ -1,7 +1,9 @@
 export default {
   "expo": {
     "name": "jobs",
-    "slug": "jobs",
+    "slug": "react-native-advanced-concepts",
+    "owner": "dajimenezriv",
+    "scheme": "myscheme",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
