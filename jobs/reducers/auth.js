@@ -9,7 +9,6 @@ const slice = createSlice({
   reducers: {
     setToken(state, { payload }) {
       const token = payload;
-      console.log(token);
       return { ...state, token };
     },
   },

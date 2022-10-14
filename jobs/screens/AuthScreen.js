@@ -1,14 +1,23 @@
 // logic
-import { View, Text, StyleSheet, Button } from 'react-native';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import * as WebBrowser from 'expo-web-browser';
 import * as Google from 'expo-auth-session/providers/google';
 import { googleLogin } from '../reducers/auth';
 
+// gui
+import { Button, View, StyleSheet } from 'react-native';
+import { useEffect } from 'react';
+
 WebBrowser.maybeCompleteAuthSession();
 
-export default function AuthScreen() {
+export default function AuthScreen({ navigation }) {
   const dispatch = useDispatch();
+
+  const { token } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    if (token) navigation.navigate('MainNav');
+  }, [token]);
 
   const [request, response, promptAsync] = Google.useAuthRequest({
     expoClientId: '740846720538-ndmidc19k0hqksco445i05gcmiu65tb6.apps.googleusercontent.com',
@@ -19,10 +28,10 @@ export default function AuthScreen() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>AuthScreen</Text>
       <Button
+        style={styles.button}
         disabled={!request}
-        title="Login"
+        title="Log in Google"
         onPress={() => dispatch(googleLogin(promptAsync))}
       />
     </View>
@@ -32,10 +41,10 @@ export default function AuthScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    padding: 10
   },
-  text: {
-    fontSize: 30
+  button: {
+    flex: 1,
   }
 });

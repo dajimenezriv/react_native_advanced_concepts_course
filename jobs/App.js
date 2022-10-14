@@ -48,7 +48,10 @@ export default function App() {
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <NavigationContainer>
-          <Tab.Navigator>
+          <Tab.Navigator screenOptions={{
+            headerShown: false,
+            tabBarStyle: { display: 'none' },
+          }}>
             <Tab.Screen name="Welcome" component={WelcomeScreen} />
             <Tab.Screen name="Auth" component={AuthScreen} />
             <Tab.Screen name="MainNav" component={MainNavigator} />
