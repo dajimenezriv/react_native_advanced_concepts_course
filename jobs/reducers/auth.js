@@ -1,8 +1,6 @@
 // logic
 import { createSlice } from '@reduxjs/toolkit';
 
-// redux
-
 const slice = createSlice({
   name: 'auth',
   initialState: { token: null },

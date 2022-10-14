@@ -35,7 +35,9 @@ function ReviewNavigator() {
 
 function MainNavigator() {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator screenOptions={{
+      headerShown: false,
+    }}>
       <Tab.Screen name="Map" component={MapScreen} />
       <Tab.Screen name="Deck" component={DeckScreen} />
       <Tab.Screen name="ReviewNav" component={ReviewNavigator} />
