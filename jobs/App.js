@@ -1,11 +1,20 @@
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Button, Icon } from '@rneui/base';
+// logic
+import { useEffect, useRef, useState } from 'react';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import store, { persistor } from './store';
+import * as Notifications from 'expo-notifications';
+import registerNotifications from './notifications/pushNotifications';
 
+// navigation
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+// gui
+import { Button, Icon } from '@rneui/base';
+
+// components
 import AuthScreen from './screens/AuthScreen';
 import WelcomeScreen from './screens/WelcomeScreen';
 import MapScreen from './screens/MapScreen';
@@ -58,6 +67,28 @@ function MainNavigator() {
 }
 
 export default function App() {
+  const [pushToken, setPushToken] = useState(null);
+  const [notification, setNotification] = useState(null);
+  const notificationListener = useRef();
+  const responseListener = useRef();
+
+  useEffect(() => {
+    registerNotifications().then((token) => setPushToken(token));
+
+    notificationListener.current = Notifications.addNotificationReceivedListener(setNotification);
+    responseListener.current = Notifications.addNotificationResponseReceivedListener((res) => {
+      setNotification(response.notification);
+    });
+
+    return () => {
+      notificationListener.current && Notifications.removeNotificationSubscription(notificationListener.current);
+      responseListener.current && Notifications.removeNotificationSubscription(responseListener.current);
+    };
+  }, []);
+
+  console.log('pushToken', pushToken);
+  console.log('notification', notification);
+
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>

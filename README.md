@@ -282,3 +282,12 @@ We need to retrieve the jobs from the indeed API.<br>
 However, it's deprecated, so we are going to mock the data.<br>
 Create a deck to like or dislike a job.<br>
 Then, we have a review screen where we can apply for a job.
+
+### Section 12: Offline Data Persistence
+
+Persist the storage of redux.
+
+### Section 13: Push Notifications
+
+Get the notifications permissions and log notifications content in the console.<br>
+We can check them using https://expo.dev/notifications.

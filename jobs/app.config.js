@@ -23,6 +23,8 @@ export default {
       "supportsTablet": true
     },
     "android": {
+      "permissions": ["NOTIFICATIONS"],
+      "useNextNotificationsApi": true,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
