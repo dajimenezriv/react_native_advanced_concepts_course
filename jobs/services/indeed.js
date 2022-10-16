@@ -2,8 +2,6 @@ import axios from 'axios';
 import qs from 'qs';
 import { response } from './indeedMock';
 
-console.log(response);
-
 const baseUrl = `http://api.indeed.com/ads/apisearch?`;
 const params = {
   publisher: '4201738803816157',

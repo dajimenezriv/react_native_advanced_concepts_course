@@ -1,7 +1,7 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Button } from '@rneui/base';
+import { Button, Icon } from '@rneui/base';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import store, { persistor } from './store';
@@ -38,9 +38,21 @@ function MainNavigator() {
     <Tab.Navigator screenOptions={{
       headerShown: false,
     }}>
-      <Tab.Screen name="Map" component={MapScreen} />
-      <Tab.Screen name="Deck" component={DeckScreen} />
-      <Tab.Screen name="ReviewNav" component={ReviewNavigator} />
+      <Tab.Screen name="Map" component={MapScreen} options={{
+        tabBarIcon: ({ color }) => (
+          <Icon name="explore" size={30} color={color} />
+        )
+      }} />
+      <Tab.Screen name="Deck" component={DeckScreen} options={{
+        tabBarIcon: ({ color }) => (
+          <Icon name="style" size={30} color={color} />
+        )
+      }} />
+      <Tab.Screen name="ReviewNav" component={ReviewNavigator} options={{
+        tabBarIcon: ({ color }) => (
+          <Icon name="preview" size={30} color={color} />
+        )
+      }} />
     </Tab.Navigator>
   )
 }

@@ -1,20 +1,24 @@
-import { View, Text, StyleSheet } from 'react-native';
+// logic
+import { useDispatch } from 'react-redux';
+import { clearLikedJobs } from '../reducers/jobs';
+
+// gui
+import { Button } from '@rneui/base';
+import { View } from 'react-native';
 
 export default function SettingsScreen() {
+  const dispatch = useDispatch();
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>SettingsScreen</Text>
+    <View style={{ flex: 1 }}>
+      <View style={{ margin: 10 }}>
+      <Button
+          title="Reset Liked Jobs"
+          type="solid"
+          icon={{ name: 'delete-forever', color: '#fff' }}
+          onPress={() => dispatch(clearLikedJobs())}
+        />
+      </View>
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  text: {
-    fontSize: 30
-  }
-});

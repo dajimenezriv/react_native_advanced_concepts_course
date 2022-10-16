@@ -53,5 +53,9 @@ export const likeJob = (job) => async (dispatch, getState) => {
   dispatch(setLiked([...liked, job]));
 }
 
+export const clearLikedJobs = () => async (dispatch) => {
+  dispatch(setLiked([]));
+}
+
 export const { setJobs, setLiked } = slice.actions;
 export default slice.reducer;
