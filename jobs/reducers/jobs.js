@@ -2,6 +2,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import * as googleMaps from '../services/googleMaps';
 import * as indeed from '../services/indeed';
+import _ from 'lodash';
 
 // gui
 import { Alert } from 'react-native';
@@ -12,13 +13,6 @@ const handleError = (err) => {
   console.log(err);
 };
 
-const getUnique = (list, key='jobkey') => {
-  const uniqueKeys = list
-    .map(item => item[key])
-    .filter((value, index, self) => self.indexOf(value) === index)
-  return list.filter((item) => uniqueKeys.includes(item[key]))
-};
-
 // redux
 
 const slice = createSlice({
@@ -27,11 +21,11 @@ const slice = createSlice({
   reducers: {
     setJobs(state, { payload }) {
       const jobs = payload;
-      return { ...state, jobs: getUnique(jobs) };
+      return { ...state, jobs: _.uniqBy(jobs, 'jobkey') };
     },
     setLiked(state, { payload }) {
       const liked = payload;
-      return { ...state, liked: getUnique(liked) };
+      return { ...state, liked: _.uniqBy(liked, 'jobkey') };
     }
   },
 });

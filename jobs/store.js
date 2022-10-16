@@ -11,11 +11,12 @@ const persistConfig = {
 }
 
 const persistedAuth = persistReducer(persistConfig, auth);
+const persistedJobs = persistReducer(persistConfig, jobs);
 
 const store = configureStore({
   reducer: {
     auth: persistedAuth,
-    jobs: jobs,
+    jobs: persistedJobs,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
