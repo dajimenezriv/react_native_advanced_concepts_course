@@ -1,62 +1,34 @@
 // logic
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { likeJob } from '../reducers/jobs';
 
 // gui
-import { View, Text, Platform } from 'react-native';
-import { Card, Button } from '@rneui/base';
-import MapView from 'react-native-maps';
+import { View } from 'react-native';
+import { Card } from '@rneui/base';
 
 // components
 import Swipe from '../components/Swipe';
+import JobCard from '../components/JobCard';
 
 export default function DeckScreen() {
+  const dispatch = useDispatch();
   const { jobs } = useSelector((state) => state.jobs);
 
   return (
     <View style={{
       flex: 1,
+      marginTop: 50,
     }}>
       <Swipe
-        data={jobs}
+        data={[...jobs]}
+        keyProp="jobkey"
         renderNoMoreCards={() => (
           <Card>
             <Card.Title>No more jobs</Card.Title>
           </Card>
         )}
-        renderCard={(job) => {
-          const initialRegion = {
-            longitude: job.longitude,
-            latitude: job.latitude,
-            longitudeDelta: 0.045,
-            latitudeDelta: 0.02,
-          };
-
-          return (
-            <Card>
-              <Card.Title>{job.jobtitle}</Card.Title>
-              <View style={{ height: 300 }}>
-                <MapView
-                  style={{ flex: 1 }}
-                  scrollEnabled={false}
-                  // render it as an image
-                  cacheEnabled={Platform.OS === 'android'}
-                  initialRegion={initialRegion}
-                >
-
-                </MapView>
-              </View>
-              <View style={{
-                flexDirection: 'row',
-                justifyContent: 'space-around',
-                marginBottom: 10,
-              }}>
-                <Text>{job.company}</Text>
-                <Text>{job.formattedRelativeTime}</Text>
-              </View>
-              <Text>{job.snippet}</Text>
-            </Card>
-          )
-        }}
+        renderCard={(job) => <JobCard job={job} />}
+        onSwipeRight={(job) => dispatch(likeJob(job))}
       />
     </View>
   )

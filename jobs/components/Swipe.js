@@ -7,6 +7,7 @@ const SWIPE_OUT_DURATION = 250;
 
 export default function Swipe({
   data,
+  keyProp = 'id',
   renderNoMoreCards,
   renderCard,
   onSwipeLeft = () => { },
@@ -47,14 +48,16 @@ export default function Swipe({
     // timing is more linear
     Animated.timing(position, {
       toValue: { x, y: 0 },
-      duration: SWIPE_OUT_DURATION
+      duration: SWIPE_OUT_DURATION,
+      useNativeDriver: false,
     }).start(() => onSwipeComplete(direction));
   };
 
   const resetPosition = () => {
     // spring is more like bouncing
     Animated.spring(position, {
-      toValue: { x: 0, y: 0 }
+      toValue: { x: 0, y: 0 },
+      useNativeDriver: false,
     }).start();
   };
 
@@ -83,7 +86,7 @@ export default function Swipe({
         if (idx === cardIdx) {
           return (
             <Animated.View
-              key={item.id}
+              key={item[keyProp]}
               style={[getCardStyle(), styles.cardStyle]}
               // panHandlers is an object that has different callbacks that help intercept pressed from the user
               {...panResponder.panHandlers}
@@ -95,7 +98,7 @@ export default function Swipe({
 
         return (
           <Animated.View
-            key={item.id}
+            key={item[keyProp]}
             style={[styles.cardStyle, { top: (5 * (idx - cardIdx)) }]}
           >
             {renderCard(item)}
