@@ -3,6 +3,7 @@ import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import auth from './reducers/auth';
+import jobs from './reducers/jobs';
 
 const persistConfig = {
   key: 'root',
@@ -14,6 +15,7 @@ const persistedAuth = persistReducer(persistConfig, auth);
 const store = configureStore({
   reducer: {
     auth: persistedAuth,
+    jobs: jobs,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

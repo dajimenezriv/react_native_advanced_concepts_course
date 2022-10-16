@@ -1,5 +1,8 @@
 import axios from 'axios';
 import qs from 'qs';
+import { response } from './indeedMock';
+
+console.log(response);
 
 const baseUrl = `http://api.indeed.com/ads/apisearch?`;
 const params = {
@@ -16,4 +19,5 @@ const buildUrl = (zipcode) => {
   return `${baseUrl}${query}`;
 };
 
-export const getJobs = async (zipcode) => { return await axios.get(buildUrl(zipcode)); }
+// export const getJobs = async (zipcode) => axios.get(buildUrl(zipcode));
+export const getJobs = async (zipcode) => response;

@@ -244,7 +244,7 @@ module.exports = (req, res) => {
 }
 ```
 
-## Pending
+## Jobs
 
 ### Section 9: Bringing it All Together
 
@@ -275,3 +275,8 @@ Login into expo and start the app.
 expo login
 npx expo start
 ```
+
+### Section 11: MapViews on React Native
+
+We need to retrieve the jobs from the indeed API.<br>
+However, it's deprecated, so we are going to mock the data.
